@@ -28,8 +28,9 @@ dependencies:
   tuple: ^1.0.3
 
 dev_dependencies:
-  flutter_test:
+  flutter_driver:
     sdk: flutter
+  test: any
   flutter_launcher_icons: ^0.7.4
 
 flutter_icons:

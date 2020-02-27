@@ -21,10 +21,14 @@ class MyApp extends StatelessWidget {
             bottom: TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.attach_money)),
-                Tab(icon: Icon(Icons.person)),
+                Tab(
+                    icon: Icon(
+                  Icons.person,
+                  key: ValueKey('profile_page_tab'),
+                )),
               ],
             ),
-            title: Text('Monopoly Money'),
+            title: Text('E-Commerce App'),
           ),
           body: TabBarView(
             children: [
@@ -59,7 +63,7 @@ class TransactionsPage extends StatelessWidget {
                   color: color,
                 ),
                 child: ListTile(
-                  enabled: !(document['id'] == documentOnDevice['id']),
+//                  enabled: !(document['id'] == documentOnDevice['id']),
                   leading: Icon(Icons.account_balance_wallet),
                   title: Text(document['name']),
                   trailing: Text(document['money'].toString()),
@@ -75,6 +79,7 @@ class TransactionsPage extends StatelessWidget {
                               title: Text('This is your balance!'),
                               actions: <Widget>[
                                 RaisedButton(
+                                  key: ValueKey("close_button"),
                                   color: Colors.green,
                                   child: Text('Close'),
                                   onPressed: () {
@@ -96,6 +101,7 @@ class TransactionsPage extends StatelessWidget {
                             children: <Widget>[
                               new Expanded(
                                   child: new TextField(
+                                    key: ValueKey("transfer_amount"),
                                 autofocus: true,
                                 decoration:
                                     new InputDecoration(hintText: 'eg. 200'),
@@ -107,6 +113,7 @@ class TransactionsPage extends StatelessWidget {
                           ),
                           actions: <Widget>[
                             RaisedButton(
+                              key: ValueKey("transfer_button"),
                               color: Colors.green,
                               child: Text('Transfer'),
                               onPressed: () {
@@ -222,6 +229,7 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                             height: 20.0,
                           ),
                           DropdownButton<String>(
+                            key: ValueKey("dropdown_button"),
                             value: nameOnDevice,
                             onChanged: (String newValue) {
                               DocumentSnapshot documentNew = snapshot
@@ -255,6 +263,7 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                               return DropdownMenuItem<String>(
                                   value: value.item1,
                                   child: Text(value.item1,
+                                      key: ValueKey(value.item1),
                                       style: TextStyle(
                                           color: ((nameOnDevice == value.item1)
                                               ? Colors.green
@@ -308,18 +317,20 @@ class _ProfileDropdownWidgetState extends State<ProfileDropdownWidget> {
                                               if ((password == '123987') &&
                                                   (_isNumeric(amount))) {
                                                 snapshot.data.documents.forEach(
-                                                    (document) =>
-                                                        (int.parse(document['id'].toString()) == 0)
-                                                            ? document.reference
-                                                                .updateData({
-                                                                'money': 100000
-                                                              })
-                                                            : document.reference
-                                                                .updateData({
-                                                                'money':
-                                                                    int.parse(
-                                                                        amount)
-                                                              }));
+                                                    (document) => (int.parse(
+                                                                document[
+                                                                        'id']
+                                                                    .toString()) ==
+                                                            0)
+                                                        ? document.reference
+                                                            .updateData({
+                                                            'money': 100000
+                                                          })
+                                                        : document.reference
+                                                            .updateData({
+                                                            'money': int.parse(
+                                                                amount)
+                                                          }));
 
                                                 Navigator.of(context).pop();
                                               } else {
@@ -372,7 +383,7 @@ _setNameOnDevice(name) async {
 }
 
 bool _isNumeric(String s) {
-  if(s == null || s == '') {
+  if (s == null || s == '') {
     return false;
   }
   return int.parse(s) != null;

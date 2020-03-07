@@ -1,4 +1,4 @@
-package com.example.monopoly_atm
+package com.adikarbharathnvs.monopoly_atm
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

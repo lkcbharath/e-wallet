@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.monopoly_atm">
+    package="com.adikarbharathnvs.monopoly_atm">
     <uses-permission android:name="android.permission.INTERNET">
     </uses-permission>
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that

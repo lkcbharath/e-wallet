@@ -1,4 +1,4 @@
-# Monopoly Money
+# E -Wallet
 A Flutter app that uses Cloud Firestore included with Google Firebase to provide digital wallets for each user and allow cashless transactions.
 
 To add your own database, create a Firebase app and enable Cloud Firestore, then download google-services.json and add it under /android/app/.
